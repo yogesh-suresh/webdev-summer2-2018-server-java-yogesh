@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!-- Author Yogesh Suresh -->
+<!-- Web Dev CS5610 - summer 2 2018 -->
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" >
+<title>Admin Page</title>
+</head>
+<body>
+<h1>User Admin</h1>
+	<table border = "1" class="table table-striped">
+		<thead>
+			<tr>
+			 	<th>Username </th>
+			 	<th>Password</th>
+			 	<th>First name</th>
+			 	<th>Last name</th>
+			 	<th>DOB</th>
+			 	<th>Role</th>
+			 	<th>&nbsp;</th>
+			</tr>
+			<tr>  
+				<th><input placeholder="username"/></th>
+      			<th><input placeholder="password"/></th>
+      			<th><input placeholder="first name"/></th>
+    			<th><input placeholder="last name"/></th>
+    			<th><input type="date"/></th>
+    			<th><select><option value ="Faculty">Faculty</option>
+                  			<option value ="Student">Student</option>
+                  			<option value ="Admin">Admin</option></select></th>
+      			<th>
+      				<button>Update</button>
+          			<button>Create</button>
+          		</th>
+          	</tr>
+		</thead>
+		<tbody>
+    		<tr>
+      			<td>alice</td>      
+      			<td>*****</td>   
+      			<td>Alice</td>
+      			<td>Wonderland</td> 
+      			<td>05/06/1993</td> 
+      			<td>Student</td>
+      			<td><button>Edit</button> | 
+      				<button>Remove</button>
+      			</td>
+    		</tr>
+  		</tbody>
+		
+	</table>
+</body>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="user-admin.controller.client.js"></script>
+</html>
