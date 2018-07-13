@@ -45,7 +45,10 @@
 		$phone.val(user.phoneNo);
 		$email.val(user.email);
 		$role.val(user.role);
-		$dob.val(user.dateOfBirth.slice(0,10));
+		if(user.dateOfBirth)
+			$dob.val(user.dateOfBirth.slice(0,10));
+		else
+			$dob.val(user.dateOfBirth);
 	}
 	
 	function updateUser() {
@@ -69,9 +72,9 @@
 	    });
 	  }
 	
-	function logout(){
-		
-		fetch("/logout");
-		window.location.href = "/login.template.client.html"
+	function logout(){;
+		alert("logout")
+		fetch("/logout").then(function(){
+		window.location.href = "/login.template.client.html";});
 	}
 })();

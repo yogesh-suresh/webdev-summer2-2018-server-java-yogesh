@@ -21,16 +21,16 @@
 		if (usernameVal.length> 0 && passwordVal.length> 0) {
 
 			var userObjStr = JSON.stringify(userObj);
-			console.log(userObjStr);
-			var promise=fetch('/login', {
+			
+			fetch('/login', {
 				method : 'post',
 				body : userObjStr,
 				headers : {
 					'Content-Type' : 'application/json'
 				},
 				'credentials' : 'include'
-			});
-			promise.then(navigateToProfile,loginfailed);
+			}).then(navigateToProfile);
+			
 		}
 		else
 			alert("Enter the User Credentials. New User Please Sign up")
@@ -38,7 +38,7 @@
 
 	function navigateToProfile(response) {
 		console.log(response);
-		//window.location.href = "/profile.template.client.html";
+		window.location.href = "/profile.template.client.html";
 	}
 	function loginfailed() {
 		alert("Enter Correct Credentials");

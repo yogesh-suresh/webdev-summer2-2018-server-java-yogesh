@@ -2,10 +2,14 @@
  * 
  */
 (function() {
+	
+	var userServiceClient = new UserServiceClient();
+	
 	function init() {
 		findAllUsers().then(renderUsers);
 
 	}
+	
 	init();
 
 	function findAllUsers() {
@@ -57,15 +61,12 @@
 			tr.appendTo(tbody);
 		}
 	}
+	
 	function deleteUser(event) {
 		console.log(event);
 		var $button = $(event.currentTarget);
 		var id = $button.attr('id');
-		var url = "/api/user/" + id;
-		console.log(url);
-		fetch(url, {
-			method : 'delete'
-		}).then(function() {
+		 userServiceClient.deleteUser(id).then(function() {
 			findAllUsers().then(renderUsers);
 		});
 	}

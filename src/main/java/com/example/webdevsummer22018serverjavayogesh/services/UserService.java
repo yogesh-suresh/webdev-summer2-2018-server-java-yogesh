@@ -3,6 +3,7 @@ package com.example.webdevsummer22018serverjavayogesh.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class UserService {
 	
 	@GetMapping("/logout")
 	public void logout(HttpSession session) {
+		System.out.println("logout");
 		session.invalidate();
 		
 	}
@@ -59,12 +61,13 @@ public class UserService {
 	}
 
 	@PostMapping("/login")
-	public User login(@RequestBody User user, HttpSession session) {
+	public User login(@RequestBody User user, HttpSession session, HttpServletResponse servletResponse) {
 		user= userRepository.findUserByCredentials(user.getUsername(), user.getPassword());
 		if(user != null)
 		{	session.setAttribute("currentUser", user);
 			return user;
 		}
+		servletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		return null;
 	}
 

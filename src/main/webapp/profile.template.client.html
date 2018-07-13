@@ -6,17 +6,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<div><h1 >Profile</h1></div>
-		<br>
-		<div>
-			<label for="userName">Username :</label>
+		<div class="container-fluid">
+		<div><h1 >Profile</h1></div>
+		<form>
+		<div class ="form-group row" >
+			<label for="userName" class="col-sm-2 col-form-label" >Username :</label>
 			<input 	id="userName"
 					class="form-control" 
 					type="text" 
 					name="username">			
 		</div>
-		<br>
+		
 		<div>
 			<label for="firstName">First Name :</label>
 			<input 	id="firstName"
@@ -64,8 +64,10 @@
 					name="dob">	
 		</div>
 		<br>
-		<button id="updateBtn" class="btn btn-primary btn-block">Update</button>
-		<button id="logOutBtn" class="btn btn-secondary btn-block">LogOut</button>
+		<button id="updateBtn" class="btn btn-success btn-block">Update</button>
+		<button id="logOutBtn" class="btn btn-danger btn-block">LogOut</button>
+		</form>
+		</div>
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src ="profile.controller.client.js"></script> 
 </body>
