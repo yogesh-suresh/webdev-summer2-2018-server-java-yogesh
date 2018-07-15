@@ -25,7 +25,7 @@ public class UserService {
 	UserRepository userRepository;
 
 	// http://localhost:8080/register
-	@PostMapping("/register")
+	@PostMapping("/api/register")
 	public User register(@RequestBody User user, HttpSession session) {
 		User cu = userRepository.save(user);
 
@@ -34,7 +34,7 @@ public class UserService {
 		return cu;
 	}
 	
-	@GetMapping("/profile")
+	@GetMapping("/api/profile")
 	public Optional<User> profile(HttpSession session) {
 		User currentUser = (User) session.getAttribute("currentUser");
 		
@@ -42,9 +42,8 @@ public class UserService {
 		
 	}
 	
-	@GetMapping("/logout")
+	@GetMapping("/api/logout")
 	public void logout(HttpSession session) {
-		System.out.println("logout");
 		session.invalidate();
 		
 	}
@@ -60,7 +59,7 @@ public class UserService {
 		return (List<User>) userRepository.findAll();
 	}
 
-	@PostMapping("/login")
+	@PostMapping("/api/login")
 	public User login(@RequestBody User user, HttpSession session, HttpServletResponse servletResponse) {
 		user= userRepository.findUserByCredentials(user.getUsername(), user.getPassword());
 		if(user != null)
@@ -80,6 +79,7 @@ public class UserService {
 		if(optional.isPresent()) {
 			User user = optional.get();
 			user.setFirstname(newUser.getFirstname());
+			user.setPassword(newUser.getPassword());
 			user.setLastname(newUser.getLastname());
 			user.setPhoneNo(newUser.getPhoneNo());
 			user.setEmail(newUser.getEmail());

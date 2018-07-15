@@ -2,6 +2,8 @@
  * 
  */
 (function(){
+	 
+	 var userServiceClient = new UserServiceClient();
 	 var $username,$firstName,$lastName,$phone,$email,$role,$dob;
 	 var $updateBtn,$logOutBtn;
 	 var currentUser = null;
@@ -29,9 +31,7 @@
 	
 	
 	function profileLoad() {
-	    return fetch('/profile', {
-	      'credentials': 'include'
-	    })
+	    return userServiceClient.showUser()
 	    .then(function (response) {
 	      return response.json();
 	    });
@@ -62,19 +62,12 @@
 	    		dateOfBirth: $dob.val()
 	    };
 
-	    fetch("/api/user/" + currentUser.id, {
-	      method: 'put',
-	      body: JSON.stringify(userObj),
-	      'credentials': 'include',
-	      headers: {
-	        'content-type': 'application/json'
-	      }
-	    });
+	    userServiceClient.updateUser(userObj,currentUser.id);
 	  }
 	
 	function logout(){;
-		alert("logout")
-		fetch("/logout").then(function(){
-		window.location.href = "/login.template.client.html";});
+		alert("Thanks for Visiting Site !! logging Out")
+		userServiceClient.logOutUser().then(function(){
+		window.location.href = "/components/login/login.template.client.html";});
 	}
 })();

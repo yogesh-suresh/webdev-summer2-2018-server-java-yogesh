@@ -3,6 +3,8 @@
  */
 
 (function() {
+	
+	var userServiceClient = new UserServiceClient();
 	var loginBtn = $('#loginBtn');
 	var usernameFld = $('#userName');
 	var passwordFld = $('#password');
@@ -21,15 +23,13 @@
 		if (usernameVal.length> 0 && passwordVal.length> 0) {
 
 			var userObjStr = JSON.stringify(userObj);
-			
-			fetch('/login', {
-				method : 'post',
-				body : userObjStr,
-				headers : {
-					'Content-Type' : 'application/json'
-				},
-				'credentials' : 'include'
-			}).then(navigateToProfile);
+			userServiceClient.loginUser(userObjStr)
+			.then(function (response){
+				if(response.status == 200){
+					navigateToProfile();}
+				else
+					loginfailed();
+			});
 			
 		}
 		else
@@ -37,8 +37,7 @@
 	}
 
 	function navigateToProfile(response) {
-		console.log(response);
-		window.location.href = "/profile.template.client.html";
+		window.location.href = "/components/profile/profile.template.client.html";
 	}
 	function loginfailed() {
 		alert("Enter Correct Credentials");

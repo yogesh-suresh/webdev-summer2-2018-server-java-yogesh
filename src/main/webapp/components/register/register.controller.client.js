@@ -2,6 +2,7 @@
  * 
  */
 (function() {
+	var userServiceClient = new UserServiceClient();
 	var registerBtn = $('#registerBtn');
 	var usernameFld = $('#username');
 	var passwordFld = $('#password');
@@ -21,23 +22,17 @@
 		if (passwordVal == password2Val && passwordVal.length > 0
 				&& password2Val.length > 0) {
 			var userObjStr = JSON.stringify(userObj);
-			fetch('/register', {
-				method : 'post',
-				body : userObjStr,
-				headers : {
-					'Content-Type' : 'application/json'
-				},
-				'credentials' : 'include'
-			}).then(registrationSuccessful, registrationFailed)
+			userServiceClient.addUser(userObjStr).
+			then(registrationSuccessful, registrationFailed)
 		} else
 			alert("Confirm Password mismatch. Try Again");
 
 	}
 	function registrationSuccessful() {
-		window.location.href = '/profile.template.client.html';
+		window.location.href = '/components/profile/profile.template.client.html';
 	}
 	function registrationFailed() {
-		alert("Failed");
+		alert("Login Failed");
 	}
 
 })();
