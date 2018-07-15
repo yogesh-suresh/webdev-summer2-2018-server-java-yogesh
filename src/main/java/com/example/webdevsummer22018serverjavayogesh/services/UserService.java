@@ -79,7 +79,7 @@ public class UserService {
 		if(optional.isPresent()) {
 			User user = optional.get();
 			user.setFirstname(newUser.getFirstname());
-			user.setPassword(newUser.getPassword());
+//			user.setPassword(newUser.getPassword());
 			user.setLastname(newUser.getLastname());
 			user.setPhoneNo(newUser.getPhoneNo());
 			user.setEmail(newUser.getEmail());
