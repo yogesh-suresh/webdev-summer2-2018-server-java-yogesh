@@ -1,10 +1,15 @@
 package com.example.webdevsummer22018serverjavayogesh.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Topic {
@@ -13,6 +18,9 @@ public class Topic {
 	private int id;
 	
 	private String title;
+	
+	@OneToMany(mappedBy="topic")
+	private List<Widget> widgets;
 	
 	public int getId() {
 		return id;
@@ -40,4 +48,12 @@ public class Topic {
 
 	@ManyToOne
 	private Lesson lesson;
+
+	public List<Widget> getWidgets() {
+		return widgets;
+	}
+
+	public void setWidgets(List<Widget> widgets) {
+		this.widgets = widgets;
+	}
 }
