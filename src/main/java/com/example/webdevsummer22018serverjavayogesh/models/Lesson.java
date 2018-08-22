@@ -1,5 +1,6 @@
 package com.example.webdevsummer22018serverjavayogesh.models;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -47,5 +48,9 @@ public class Lesson {
 	}
 	public void setTopics(List<Topic> topics) {
 		this.topics = topics;
+	}
+	public Collection<? extends ExamWidget> getExamWidget() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
